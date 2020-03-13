@@ -28,6 +28,11 @@ app.use((req, res, next) => {
   next();
 });
 
+/**
+ * Routes
+ */
+app.use('/admin', routes);
+
 app.use((req, res, next) => {
   const erro = new Error('Not found');
   erro.status = 404;
@@ -42,11 +47,6 @@ app.use((error, req, res, next) => {
     },
   });
 });
-
-/**
- * Routes
- */
-app.use('/admin', routes);
 
 const port = process.env.PORT || 3001;
 server.listen(port, () => {
