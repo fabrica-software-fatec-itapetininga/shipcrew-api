@@ -1,3 +1,4 @@
+require('dotenv/config');
 const http = require('http');
 const morgan = require('morgan');
 const express = require('express');
