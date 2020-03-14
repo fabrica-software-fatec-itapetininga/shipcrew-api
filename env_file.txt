@@ -7,3 +7,6 @@ DB_PORT = 5432
 DB_USER = murilo
 DB_PASS = 1234
 DB_NAME = ship_crew
+
+# Authentication
+JWT_KEY = "ship_crew"

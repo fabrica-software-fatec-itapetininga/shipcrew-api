@@ -2,12 +2,6 @@ const yup = require('yup');
 const User = require('../models/User');
 
 module.exports = {
-  signin(req, res) {
-    res.status(200).send({
-      mensagem: 'Usando o GET da rota de cruds',
-    });
-  },
-
   async index(req, res) {
     try {
       const users = await User.findAll();
