@@ -4,6 +4,8 @@ const morgan = require('morgan');
 const express = require('express');
 const bodyParser = require('body-parser');
 
+require('./database/index.js');
+
 const app = express();
 
 const routes = require('./routes');
@@ -34,21 +36,20 @@ app.use((req, res, next) => {
 app.use('/admin', routes);
 
 app.use((req, res, next) => {
-  const erro = new Error('Not found');
-  erro.status = 404;
-  next(erro);
+  const err = new Error('Not found');
+  err.status = 404;
+  next(err);
 });
 
 app.use((error, req, res, next) => {
   res.status(error.status || 500);
-  return res.send({
-    erro: {
-      message: error.message,
-    },
+  return res.json({
+    success: false,
+    message: error.message,
   });
 });
 
-const port = process.env.PORT || 3001;
+const port = process.env.APP_PORT || 3001;
 server.listen(port, () => {
   console.log('Back-end running on port ' + port);
 });
