@@ -4,7 +4,9 @@ const User = require('../models/User');
 module.exports = {
   async index(req, res) {
     try {
-      const users = await User.findAll();
+      const users = await User.findAll({
+        where: { isActive: true },
+      });
       return res.json({
         success: true,
         users,
@@ -50,7 +52,7 @@ module.exports = {
         pass: yup
           .string()
           .required()
-          .min(6),
+          .min(4),
         isActive: yup.bool().required(),
       });
 
@@ -163,9 +165,11 @@ module.exports = {
         });
       }
 
-      user.destroy({
-        where: { id },
-      });
+      // user.destroy({
+      //   where: { id },
+      // });
+
+      user.update({ isActive: false });
 
       return res.json({
         success: true,
