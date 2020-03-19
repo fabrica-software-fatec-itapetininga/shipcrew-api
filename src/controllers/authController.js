@@ -15,7 +15,9 @@ module.exports = {
     });
 
     if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ error: 'Validation fails' });
+      return res
+        .status(400)
+        .json({ success: false, message: 'Validation fails' });
     }
 
     const { email, password } = req.body;
@@ -24,10 +26,15 @@ module.exports = {
       where: { email },
     });
 
-    if (!user) return res.status(401).json({ error: 'User not found' });
+    if (!user)
+      return res
+        .status(404)
+        .json({ success: false, message: 'User not found' });
 
     if (!(await user.checkPassword(password)))
-      return res.status(401).json({ error: 'Password does not match' });
+      return res
+        .status(401)
+        .json({ success: false, message: 'Password does not match' });
 
     const { id, name } = user;
 

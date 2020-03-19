@@ -4,9 +4,16 @@ const User = require('../models/User');
 module.exports = {
   async index(req, res) {
     try {
-      const users = await User.findAll({
+      const query = await User.findAll({
         where: { isActive: true },
       });
+
+      const users = [];
+      query.map(user => {
+        const { id, name, email } = user;
+        return users.push({ id, name, email });
+      });
+
       return res.json({
         success: true,
         users,
