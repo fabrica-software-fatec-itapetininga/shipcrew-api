@@ -1,5 +1,6 @@
 require('dotenv/config');
 const http = require('http');
+const cors = require('cors');
 const morgan = require('morgan');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -11,6 +12,8 @@ const app = express();
 const routes = require('./routes');
 
 const server = http.createServer(app);
+
+app.use(cors());
 
 app.use(morgan('dev'));
 
