@@ -37,13 +37,14 @@ O SGBD escolhido é o [PostgreSQL](https://www.postgresql.org/) por sua capacida
 
 - Copiar tudo do arquivo `env_file.txt`, criar e colar tudo no arquivo arquivo .env;
 - Configurar container no Docker: `docker run --name shipcrew-postgre -e POSTGRES_USER=fabrica -e POSTGRES_PASSWORD=1234 -p 3003:5432 -d postgres`;
+- Executar `yarn` ou `yarn install` para instalar todas as dependências;
 - Executar `yarn sequelize db:create` para criar banco de dados com sequelize;
 - Executar `yarn sequelize db:migrate` para criar as tabelas do banco de dados com sequelize;
-- Executar `yarn` para instalar todas as dependências, depois executar `yarn start`. O servidor de desenvolvimento deverá iniciar na porta 3001;
+- Executar `yarn start`. O servidor de desenvolvimento deverá iniciar na porta 3001;
 
 # Endpoints
 
-\*Para fazer todas as requisições será necessário autenticação com JWT e com o header assim:
+\* Para fazer todas as requisições será necessário autenticação com JWT e com o header assim:
 
 - **Header:** `authorization`
 - **Value:** `bearer <token>`
@@ -53,7 +54,7 @@ O SGBD escolhido é o [PostgreSQL](https://www.postgresql.org/) por sua capacida
 - **Header:** `authorization`
 - **Value:** `bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0NTcwMTIwLCJleHAiOjE1ODQ1NzM3MjB9.XQVUZFg2EkzVgZGmRx-twnmRB7l4fhqXeIjJNrT2IGE`
 
-\*A duração do token é válida por 3 dias
+\* A duração do token é válida por 3 dias
 
 ### Auth
 
