@@ -7,7 +7,7 @@
   - **Requisição:** body
   - **Corpo da requisição:**
 
-    ```
+    ```json
     {
       "email": "user@mail.com",
       "password": "userpassword"
@@ -18,7 +18,7 @@
 
     - **Status**: 200
     - **Corpo da resposta**:
-      ```
+      ```json
       {
         "success": true,
         "user": { "id": 1, "name": "user" },

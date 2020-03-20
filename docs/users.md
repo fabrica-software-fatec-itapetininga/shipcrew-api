@@ -9,7 +9,7 @@
 
     - **Status**: 200
     - **Corpo da resposta**:
-      ```
+      ```json
       {
         "success": true,
         "users": [
@@ -41,7 +41,7 @@
 
     - **Status**: 200
     - **Corpo da resposta**:
-      ```
+      ```json
       {
         "id": 1,
         "name": "admin",
@@ -66,12 +66,12 @@
   - **Requisição:** body
   - **Corpo da requisição:**
 
-    ```
+    ```json
     {
       "name": "user",
       "email": "user@mail.com",
       "password": "1234",
-      "confirmPassword": "1234",
+      "confirmPassword": "1234"
     }
     ```
 
@@ -79,7 +79,7 @@
 
     - **Status**: 200
     - **Corpo da resposta**:
-      ```
+      ```json
       {
         "success": true,
         "user": {
@@ -107,7 +107,7 @@
   - **Requisição:** body
   - **Corpo da requisição:**
 
-    ```
+    ```json
     {
       "name": "user",
       "email": "user@mail.com",
@@ -121,7 +121,7 @@
 
     - **Status**: 200
     - **Corpo da resposta**:
-      ```
+      ```json
       {
         "success": true,
         "user": {
@@ -156,7 +156,7 @@
 
     - **Status**: 200
     - **Corpo da resposta**:
-      ```
+      ```json
       {
         "success": true,
         "message": "User deleted"
