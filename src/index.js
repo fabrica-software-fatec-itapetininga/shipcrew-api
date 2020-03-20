@@ -1,13 +1,19 @@
+require('dotenv/config');
 const http = require('http');
+const cors = require('cors');
 const morgan = require('morgan');
 const express = require('express');
 const bodyParser = require('body-parser');
+
+require('./database/index.js');
 
 const app = express();
 
 const routes = require('./routes');
 
 const server = http.createServer(app);
+
+app.use(cors());
 
 app.use(morgan('dev'));
 
@@ -27,27 +33,26 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use((req, res, next) => {
-  const erro = new Error('Not found');
-  erro.status = 404;
-  next(erro);
-});
-
-app.use((error, req, res, next) => {
-  res.status(error.status || 500);
-  return res.send({
-    erro: {
-      message: error.message,
-    },
-  });
-});
-
 /**
  * Routes
  */
 app.use('/admin', routes);
 
-const port = process.env.PORT || 3001;
+app.use((req, res, next) => {
+  const err = new Error('Not found');
+  err.status = 404;
+  next(err);
+});
+
+app.use((error, req, res, next) => {
+  res.status(error.status || 500);
+  return res.json({
+    success: false,
+    message: error.message,
+  });
+});
+
+const port = process.env.APP_PORT || 3001;
 server.listen(port, () => {
   console.log('Back-end running on port ' + port);
 });

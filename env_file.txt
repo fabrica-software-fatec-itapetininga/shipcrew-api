@@ -1,0 +1,12 @@
+# App
+APP_PORT = 3001
+
+# Database
+DB_HOST = localhost
+DB_PORT = 3003
+DB_USER = fabrica
+DB_PASS = 1234
+DB_NAME = ship_crew
+
+# Authentication
+JWT_KEY = "ship_crew"
