@@ -11,12 +11,13 @@ const routes = express.Router();
  */
 routes.post('/signin', authController.store);
 
+routes.post('/users', usersController.store); // TEMP
+
 routes.use(authMiddleware);
 
 /**
  * Users routes
  */
-routes.post('/users', usersController.store);
 routes.get('/users', usersController.index);
 routes.get('/users/:id', usersController.show);
 routes.patch('/users/:id', usersController.update);
