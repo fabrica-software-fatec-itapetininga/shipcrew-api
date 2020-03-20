@@ -249,7 +249,7 @@ O SGBD escolhido é o [PostgreSQL](https://www.postgresql.org/) por sua capacida
 
   - **Função:** deletar dados do usuário
   - **Método:** `DELETE`
-  - **Restrição:** por questões de segurança, o usuário não será deletado definitivamente do banco de dados. Apenas será alterado seu estado de ativa para inativo.
+  - **Restrição:** por questões de segurança, o usuário não será deletado definitivamente do banco de dados. Apenas será alterado seu estado de ativo para inativo.
 
   - **Resposta de sucesso:**
 
