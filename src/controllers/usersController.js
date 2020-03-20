@@ -29,7 +29,7 @@ module.exports = {
   async show(req, res) {
     try {
       const user = await User.findOne({
-        where: { id: req.params.id },
+        where: { id: req.params.id, isActive: true },
       });
 
       if (!user) {
@@ -56,11 +56,15 @@ module.exports = {
           .string()
           .email()
           .required(),
-        pass: yup
+        password: yup
           .string()
           .required()
           .min(4),
-        isActive: yup.bool().required(),
+        confirmPassword: yup
+          .string()
+          .when('password', (password, field) =>
+            password ? field.required().oneOf([yup.ref('password')]) : field
+          ),
       });
 
       if (!(await schema.isValid(req.body))) {
@@ -81,14 +85,13 @@ module.exports = {
         });
       }
 
-      const { name, email, isActive } = await User.create(req.body);
+      const { name, email } = await User.create(req.body);
 
       return res.json({
         success: true,
         user: {
           name,
           email,
-          isActive,
         },
       });
     } catch (error) {
@@ -104,10 +107,10 @@ module.exports = {
       const schema = yup.object().shape({
         name: yup.string(),
         email: yup.string().email(),
-        oldPassword: yup.string().min(6),
+        oldPassword: yup.string().min(4),
         password: yup
           .string()
-          .min(6)
+          .min(4)
           .when('oldPassword', (oldPassword, field) =>
             oldPassword ? field.required() : field
           ),
@@ -148,7 +151,7 @@ module.exports = {
 
       const { id, name } = await User.findByPk(req.params.id);
 
-      return res.json({ success: true, user: id, name });
+      return res.json({ success: true, user: { id, name } });
     } catch (error) {
       return res.status(500).json({
         success: false,

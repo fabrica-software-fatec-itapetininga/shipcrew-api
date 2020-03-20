@@ -7,9 +7,12 @@ class User extends Model {
       {
         name: DataTypes.STRING,
         email: DataTypes.STRING,
-        pass: DataTypes.VIRTUAL,
+        // pass: DataTypes.VIRTUAL,
         password: DataTypes.STRING,
-        isActive: DataTypes.BOOLEAN,
+        isActive: {
+          type: DataTypes.BOOLEAN,
+          defaultValue: true,
+        },
       },
       {
         sequelize,
@@ -17,16 +20,16 @@ class User extends Model {
     );
 
     this.addHook('beforeSave', async user => {
-      if (user.pass) {
-        user.password = await bcrypt.hash(user.pass, 8);
+      if (user.password) {
+        user.password = await bcrypt.hash(user.password, 8);
       }
     });
 
     return this;
   }
 
-  checkPassword(pass) {
-    return bcrypt.compare(pass, this.password);
+  checkPassword(password) {
+    return bcrypt.compare(password, this.password);
   }
 }
 
