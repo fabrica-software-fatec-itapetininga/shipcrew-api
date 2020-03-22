@@ -54,5 +54,5 @@ app.use((error, req, res, next) => {
 
 const port = process.env.APP_PORT || 3001;
 server.listen(port, () => {
-  console.log('Back-end running on port ' + port);
+  console.log('Back-end running on port ' + port + ' :)');
 });
