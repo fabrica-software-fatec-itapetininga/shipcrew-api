@@ -11,6 +11,7 @@ class Pupil extends Model {
           type: DataTypes.BOOLEAN,
           defaultValue: true,
         },
+        avatar: DataTypes.STRING,
       },
       {
         sequelize,

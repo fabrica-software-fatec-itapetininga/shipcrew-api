@@ -51,8 +51,13 @@ module.exports = {
       }
 
       const { name } = req.body;
+      const [firstname] = name.split(' ');
 
-      const pupil = await Pupil.create({ name, isActive: true });
+      const pupil = await Pupil.create({
+        name,
+        isActive: true,
+        avatar: `https://api.adorable.io/avatars/285/${firstname.toLowerCase()}.png`,
+      });
       return res.json(pupil);
     } catch (error) {
       return res.status(500).json({
