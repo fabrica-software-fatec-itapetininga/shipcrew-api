@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('pupils',{
+    return queryInterface.createTable('pupils', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -13,10 +13,8 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      address: {
-        type: Sequelize.STRING,
-        allowNull: false,  
-      },
+      num_presences: Sequelize.INTEGER,
+      num_absences: Sequelize.INTEGER,
       is_active: {
         type: Sequelize.BOOLEAN,
         allowNull: false,

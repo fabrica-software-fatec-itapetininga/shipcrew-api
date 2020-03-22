@@ -7,7 +7,6 @@ class User extends Model {
       {
         name: DataTypes.STRING,
         email: DataTypes.STRING,
-        // pass: DataTypes.VIRTUAL,
         password: DataTypes.STRING,
         isActive: {
           type: DataTypes.BOOLEAN,

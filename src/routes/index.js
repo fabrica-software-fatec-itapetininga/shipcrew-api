@@ -25,10 +25,10 @@ routes.patch('/users/:id', usersController.update);
 routes.delete('/users/:id', usersController.destroy);
 
 /**
- * Pupils Routes 
+ * Pupils Routes
  */
 routes.get('/pupils', pupilsController.index);
-routes.get('/pupils/:id', pupilsController.indexbyid);
+routes.get('/pupils/:id', pupilsController.show);
 routes.post('/pupils', pupilsController.store);
 routes.patch('/pupils/:id', pupilsController.update);
 routes.delete('/pupils/:id', pupilsController.delete);
