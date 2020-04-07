@@ -5,6 +5,7 @@ class Pupil extends Model {
     super.init(
       {
         name: DataTypes.STRING,
+        integrationDate: DataTypes.DATE,
         numPresences: DataTypes.INTEGER,
         numAbsences: DataTypes.INTEGER,
         isActive: {

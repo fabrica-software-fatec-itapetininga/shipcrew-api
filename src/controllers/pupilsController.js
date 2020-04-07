@@ -42,6 +42,7 @@ module.exports = {
     try {
       const schema = yup.object().shape({
         name: yup.string().required(),
+        integrationDate: yup.date().required(),
       });
 
       if (!(await schema.isValid(req.body))) {
@@ -50,11 +51,12 @@ module.exports = {
           .json({ success: false, message: 'Validation fails' });
       }
 
-      const { name } = req.body;
+      const { name, integrationDate } = req.body;
       const [firstname] = name.split(' ');
 
       const pupil = await Pupil.create({
         name,
+        integrationDate,
         isActive: true,
         avatar: `https://api.adorable.io/avatars/285/${firstname.toLowerCase()}.png`,
       });
@@ -74,6 +76,7 @@ module.exports = {
     try {
       const schema = yup.object().shape({
         name: yup.string(),
+        integrationDate: yup.date(),
         numPresences: yup.number(),
         numAbsences: yup.number(),
         isActive: yup.bool(),
