@@ -12,6 +12,7 @@
 - [Endpoints](#endpoints)
   - [Auth](docs/auth.md)
   - [Users](docs/users.md)
+  - [Pupils](docs/pupils.md)
 
 # Configurações
 
