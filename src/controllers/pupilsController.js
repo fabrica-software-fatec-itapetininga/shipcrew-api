@@ -123,7 +123,6 @@ module.exports = {
       });
 
       if (pupil) {
-        await pupil.destroy();
         const pupilVerify = await Pupil.findOne({
           where: { id: req.params.id, isActive: true },
         });
@@ -134,6 +133,8 @@ module.exports = {
             message: 'Pupil cannot be deleted',
           });
         }
+
+        await pupil.destroy();
 
         return res.json({ success: true, message: 'Pupil deleted' });
       } else {

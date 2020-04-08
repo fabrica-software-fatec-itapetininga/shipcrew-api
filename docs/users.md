@@ -103,7 +103,9 @@
 
   - **Função:** atualizar dados do usuário
   - **Método:** `PATCH`
-  - **Restrição:** a senha deve ter no mínimo 4 caracteres
+  - **Restrições:**
+    - A senha deve ter no mínimo 4 caracteres;
+    - Não é obrigatório preencher todos os campos que não seja de senha.
   - **Requisição:** body
   - **Corpo da requisição:**
 
