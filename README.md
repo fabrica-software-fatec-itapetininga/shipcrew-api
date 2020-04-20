@@ -8,6 +8,7 @@
   - [Padronizações](#padronizações)
   - [Bibliotecas utilizadas](#bibliotecas-utilizadas)
   - [Uso em desenvolvimento](#uso-em-desenvolvimento)
+    - [Configuração do banco de dados](#configuração-do-banco-de-dados)
 
 - [Endpoints](#endpoints)
   - [Auth](docs/auth.md)
@@ -18,7 +19,7 @@
 
 ## Banco de Dados
 
-O SGBD escolhido é o [PostgreSQL](https://www.postgresql.org/) por sua capacidade de gerenciamento ser bastante perfomática e por ser open-source
+O SGBD escolhido é o [PostgreSQL](https://www.postgresql.org/) por sua capacidade de gerenciamento ser bastante perfomática e possuir diversos recursos
 
 ## Padronizações
 
@@ -37,10 +38,29 @@ O SGBD escolhido é o [PostgreSQL](https://www.postgresql.org/) por sua capacida
 ## Uso em desenvolvimento
 
 - Copiar tudo do arquivo `env_file.txt`, criar e colar tudo no arquivo arquivo .env;
-- Configurar container no Docker: `docker run --name shipcrew-postgre -e POSTGRES_USER=fabrica -e POSTGRES_PASSWORD=1234 -p 3003:5432 -d postgres`;
 - Executar `yarn` ou `yarn install` para instalar todas as dependências;
+
+### Configuração do banco de dados
+
+#### Opção 1: usar banco de dados local com [Docker](https://www.docker.com/)
+
+- Configurar container no Docker:
+
+```bash
+docker run --name shipcrew-postgre -e POSTGRES_USER=fabrica -e POSTGRES_PASSWORD=1234 -p 3003:5432 -d postgres;
+```
+
+- Caso já não esteja assim, no arquivo `.env` descomentar as opções **local database** e comentar as opções **remote database**
 - Executar `yarn sequelize db:create` para criar banco de dados com sequelize;
 - Executar `yarn sequelize db:migrate` para criar as tabelas do banco de dados com sequelize;
+
+#### Opção 2: usar banco de dados remoto com [ElephantSQL](https://www.elephantsql.com/)
+
+- Caso já não esteja assim, no arquivo `.env` comentar as opções **local database** e descomentar as opções **remote database**
+- Executar `yarn sequelize db:migrate` para criar as tabelas do banco de dados com sequelize;
+
+### Finalmente
+
 - Executar `yarn start`. O servidor de desenvolvimento deverá iniciar na porta 3001;
 
 # Endpoints

@@ -1,12 +1,19 @@
 # App
 APP_PORT = 3001
 
-# Database
-DB_HOST = localhost
-DB_PORT = 3003
-DB_USER = fabrica
-DB_PASS = 1234
-DB_NAME = ship_crew
+# Remote database
+DB_HOST = tuffi.db.elephantsql.com
+DB_PORT = 5432
+DB_USER = biicnlhg
+DB_PASS = jtSw8YMbEn6EKcGcHzI-nQIHsmoenwn6
+DB_NAME = biicnlhg
+
+# Local database
+# DB_HOST = localhost
+# DB_PORT = 3003
+# DB_USER = fabrica
+# DB_PASS = 1234
+# DB_NAME = ship_crew
 
 # Authentication
 JWT_KEY = "ship_crew"
