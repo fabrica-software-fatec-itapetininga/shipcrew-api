@@ -74,27 +74,39 @@ module.exports = {
         });
       }
 
-      const userExists = await User.findOne({
-        where: { email: req.body.email },
-      });
-
-      if (userExists) {
-        return res.status(400).json({
-          success: false,
-          message: 'User already exists',
-        });
-      }
-
-      const { name, email } = await User.create(req.body);
-
-      return res.json({
+      const { name, email } = req.body;
+      const successResponse = {
         success: true,
         user: {
           name,
           email,
         },
+      };
+
+      const inactiveUser = await User.findOne({
+        where: { email: req.body.email, isActive: false },
       });
+
+      if (inactiveUser) {
+        await inactiveUser.update({ isActive: true });
+        return res.json({ successResponse });
+      }
+
+      const emailExists = await User.findOne({
+        where: { email: req.body.email },
+      });
+
+      if (emailExists) {
+        return res.status(400).json({
+          success: false,
+          message: 'E-mail already exists',
+        });
+      }
+
+      await User.create(req.body);
+      return res.json(successResponse);
     } catch (error) {
+      console.log(error);
       return res.status(500).json({
         success: false,
         message: error.message,
